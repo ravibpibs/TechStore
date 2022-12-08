@@ -5,10 +5,13 @@ import styled from "styled-components";
 import logo from "../images/logo.svg";
 import { toggleSidebar } from "../actions/HomePageActions";
 import { toggleCart } from "../actions/ProductActions";
+import { useAuth0 } from "@auth0/auth0-react";
 
 export default function Navbar() {
+  const { user, loginWithRedirect, logout, isAuthenticated } = useAuth0();
   const dispatch = useDispatch();
   const { cartIndex } = useSelector((state) => state.product);
+  console.log("user",user)
   return (
     <Wrapper>
       <div className="nav-center">
@@ -16,8 +19,24 @@ export default function Navbar() {
           className="nav-icon"
           onClick={() => dispatch(toggleSidebar())}
         ></FaBars>
-        <img src={logo} alt="Tech store Logo" />
+        <div>
+          <img src={logo} alt="Tech store Logo" />
+          {
+            isAuthenticated && 
+            <p>{user.name}</p>
+          }
+        </div>
+
         <div className="nav-cart">
+
+          {
+            isAuthenticated ? <button style={{marginRight : "10px"}} onClick={() => logout({ returnTo: window.location.origin })}>
+              Log Out
+            </button> :
+              <button onClick={() => loginWithRedirect()}>Log In</button>
+          }
+
+
           <FaCartPlus
             className="nav-icon"
             onClick={() => {
