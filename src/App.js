@@ -1,8 +1,8 @@
 import "./App.css";
-import React from 'react'
+import React, { useEffect } from 'react'
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import {initialSetup ,initializeCart ,initializeSingleProduct} from './actions/ProductActions'
-import {useDispatch } from 'react-redux'
+import { initialSetup, initializeCart, initializeSingleProduct } from './actions/ProductActions'
+import { useDispatch } from 'react-redux'
 
 
 // components
@@ -24,26 +24,31 @@ function App() {
 
   const dispatch = useDispatch()
 
-  React.useEffect(() => {
+  useEffect(() => {
     dispatch(initialSetup())
     dispatch(initializeCart())
     dispatch(initializeSingleProduct())
-  } , [dispatch])
-  return <Router>
-    <Navbar></Navbar>
-    <Sidebar></Sidebar>
-    <SideCart></SideCart>
-    <Switch>
-      <Route exact path="/" ><Home></Home></Route>
-      <Route exact path="/about" ><About></About></Route>
-      <Route exact path="/contact" ><Contact></Contact></Route>
-      <Route exact path="/products" ><Products></Products></Route>
-      <Route exact path="/products/:id" ><SingleProduct></SingleProduct></Route>
-      <Route exact path="/cart" ><Cart></Cart></Route>
-      <Route><Error></Error></Route>
-    </Switch>
-    <Footer></Footer>
-  </Router>;
+  }, [dispatch])
+
+  return (
+    <div>
+      <Router>
+        <Navbar />
+        <Sidebar />
+        <SideCart />
+        <Switch>
+          <Route exact path="/" ><Home /></Route>
+          <Route exact path="/about" ><About /></Route>
+          <Route exact path="/contact" ><Contact /></Route>
+          <Route exact path="/products" ><Products /></Route>
+          <Route exact path="/products/:id" ><SingleProduct /></Route>
+          <Route exact path="/cart" ><Cart /></Route>
+          <Route><Error /></Route>
+        </Switch>
+        <Footer />
+      </Router>
+    </div>
+  );
 }
 
 export default App;

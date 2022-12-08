@@ -12,8 +12,8 @@ export default function HomePage() {
           our products
         </Link>
       </Hero>
-      <Services></Services>
-      <Featured></Featured>
+      <Services/>
+      <Featured/>
     </>
   );
 }

@@ -156,7 +156,9 @@ const ProductReducer = (state = initialState, action) => {
         cartItems: state.cartItems.filter((item) => item.id !== action.payload),
       };
     case "CLEAR_CART":
-      return { ...state, cartItems: [] };
+      return { ...state, cartItems: [],cartSubTotal: 0,
+        cartTax: 0,
+        cartTotal: 0,cartIndex: 0, };
 
     // Filtering
     case "INIT_FILTER_PARAMS":
