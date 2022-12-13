@@ -33,7 +33,7 @@ export default function Navbar() {
             isAuthenticated ? <button style={{marginRight : "10px"}} onClick={() => logout({ returnTo: window.location.origin })}>
               Log Out
             </button> :
-              <button onClick={() => loginWithRedirect()}>Log In</button>
+              <button style={{marginRight : "10px"}} onClick={() => loginWithRedirect()}>Log In</button>
           }
 
 
